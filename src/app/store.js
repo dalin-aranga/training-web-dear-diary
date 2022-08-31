@@ -1,8 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "../features/TodoSlice";
+import ToDotSlice from "../features/TodoSlice.js";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./saga";
+const saga = createSagaMiddleware();
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    carts: cartReducer,
+    carts: ToDotSlice.reducer,
   },
+  middleware: [saga],
 });
+saga.run(rootSaga);
+export default store;
+
+//all done

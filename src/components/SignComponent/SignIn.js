@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 
-function SignIn() {
+function SignIn(props) {
   const [buttonText, setButtonText] = useState();
 
   const addToDO = () => {
@@ -26,7 +26,7 @@ function SignIn() {
       <Card sx={{ maxWidth: 600, maxHeight: 900 }}>
         <div className="card">
           <div>
-            <h1 style={{ color: "LightSkyBlue" }}>Dear Diary</h1>
+            <h1 style={{ color: "LightSkyBlue" }}>Dear Diary {props.name}</h1>
           </div>
 
           <CardContent>
@@ -56,7 +56,7 @@ function SignIn() {
           </CardContent>
           <CardActions>
             <div className="btncontunue">
-              <Link to="/cart" state={buttonText}>
+              <Link to="/cards" state={buttonText}>
                 <Button variant="contained">CONTINUE</Button>{" "}
               </Link>
             </div>

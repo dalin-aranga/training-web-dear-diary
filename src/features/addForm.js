@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import React from "react";
-import { postAdded } from "./TodoSlice";
-import { nanoid } from "@reduxjs/toolkit";
+import ToDotSlice from "./TodoSlice";
+
 import "./addForm.css";
 import { AppBar, Toolbar, IconButton, Typography, Stack } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -21,8 +21,7 @@ const AddPostForm = () => {
   const onSavePostClicked = () => {
     if (title && description) {
       dispatch(
-        postAdded({
-          id: nanoid(),
+        ToDotSlice.actions.postAdded({
           title,
           description,
         })

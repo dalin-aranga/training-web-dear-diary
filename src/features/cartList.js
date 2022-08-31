@@ -1,19 +1,17 @@
 import { useSelector } from "react-redux";
-import { TodoCartList } from "./TodoSlice";
-import React from "react";
-
+import React, { useState } from "react";
 import { Typography } from "@mui/material";
-
 import Button from "@mui/material/Button";
-
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 
 const CartList = () => {
-  const carts = useSelector(TodoCartList);
+  const carts = useSelector((state) => state.carts.todos);
 
-  const renderPost = carts?.map((p) => (
+  const [showMore, setShowMore] = useState(false);
+
+  const renderPost = carts.map((p) => (
     <div key={p.id}>
       <div style={{ margin: 10 }}>
         <Card sx={{ maxWidth: 345, marginLeft: 5 }}>
@@ -22,14 +20,20 @@ const CartList = () => {
               {p.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {p.description.substring(0, 100)}
+              <CardActions className="btn">
+                {showMore
+                  ? p.description
+                  : `${p.description.substring(0, 100)}`}
+                <Button
+                  onClick={() => setShowMore(!showMore)}
+                  style={{ marginLeft: 100 }}
+                  size="small"
+                >
+                  {showMore ? "Show less" : "Show more"}
+                </Button>
+              </CardActions>
             </Typography>
           </CardContent>
-          <CardActions className="btn">
-            <Button style={{ marginLeft: 100 }} size="small">
-              SHOW MORE
-            </Button>
-          </CardActions>
         </Card>
       </div>
     </div>

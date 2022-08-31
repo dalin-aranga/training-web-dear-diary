@@ -4,7 +4,7 @@ import SignIn from "../components/SignComponent/SignIn";
 function LoginPage() {
   return (
     <div>
-      <SignIn />
+      <SignIn name="dalin" />
     </div>
   );
 }
